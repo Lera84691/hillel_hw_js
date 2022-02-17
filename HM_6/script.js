@@ -1,6 +1,6 @@
 // 1.Написать функцию copy(target, origin), которая копирует свойства из объекта origin в объект target и возвращает объект со всеми свойствами. В данном задании используйте for ... in для работы со свойствами объектов.
 
- function copy(origin) {
+function copy(origin) {
   let target = {};
   for (let key in origin) {
     target[key] = origin[key];
@@ -16,22 +16,24 @@ const origin = {
   pages: 400,
 };
 
-console.log(copy(origin)); 
+console.log(copy(origin));
 
 // 2.Напишите функцию, принимающую и сравнивающую два объекта. Если объекты содержат одинаковые ключи и значения, то функция возвращает true, если нет - false. Функция должна учитывать, что количество свойств в двух объектах может отличаться.
 
-function objectsAreSame(Mazda, Toyota) {
-  let objectsAreSame = true;
-  for(let propertyName in Mazda) {
-     if(Mazda[propertyName] !== Toyota[propertyName]) {
-      objectsAreSame = false;
-        break;
-     }
+function objectsAreSame(obj1, obj2) {
+  for (let propertyName in obj1) {
+    if (obj1[propertyName] !== obj2[propertyName]) {
+      return false;
+    }
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+      return false;
+    }
   }
-  return objectsAreSame;
-}
+  return true;
+};
 
-const Mazda = {
+const obj1 = {
+  brand:"Mazda",
   model: "CX-5",
   engine: "2.0 SKYACTIV-G 145",
   fuel: "бензи",
@@ -40,7 +42,8 @@ const Mazda = {
   "Acceleration time": 9.3,
 };
 
-const Toyota = {
+const obj2 = {
+  brand:"Toyota",
   model: "RAV4",
   engine: "2.0 Valvematic",
   "Engine capacity": 1987,
@@ -48,29 +51,31 @@ const Toyota = {
   "Acceleration time": 10.2,
 };
 
-console.log(objectsAreSame(Mazda, Toyota));  
- 
+console.log(objectsAreSame(obj1, obj2));
+
 
 // 3.Написать функцию, которая принимает строку и возвращает данные о том, сколько раз встречается каждая буква. Например, если передали строку “aaabbc”, то функция должна сообщить, что буква “a” встретилась 3 раза, буква “b” встретилась 2 раза, а буква “c” - 1 раз. Функция не должна использовать console.log, а должна вернуть объект с данными.
 
 function calc(str) {
-  result = {};
+  let result = {};
   for (const letter of str) {
     const count = result[letter] === undefined ? 0 : result[letter];
-    result[letter] = count + 1
+    result[letter] = count + 1;
   }
   return result;
 }
-const answer = calc("aabbccc")
-console.log(answer); 
+const answer = calc("aabbccc");
+console.log(answer);
 
-/* function calc(str) {
+// или 
+
+function calc(str) {
   result = {};
   for (const letter of str) {
-    if (result[letter] !== undefined); {
+    if (result[letter] !== undefined) {
       const count = result[letter];
       result[letter] = count + 1;
-    } else {                         // почему выдает ошибку?
+    } else {                         
       result[letter] = 1;
     }
   }
@@ -79,4 +84,5 @@ console.log(answer);
 }
 
 const r = calc("aabbccc");
-console.log(r); */
+console.log(r);
+
