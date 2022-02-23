@@ -20,20 +20,25 @@ console.log(copy(origin));
 
 // 2.Напишите функцию, принимающую и сравнивающую два объекта. Если объекты содержат одинаковые ключи и значения, то функция возвращает true, если нет - false. Функция должна учитывать, что количество свойств в двух объектах может отличаться.
 
-function objectsAreSame(obj1, obj2) {
-  for (let propertyName in obj1) {
-    if (obj1[propertyName] !== obj2[propertyName]) {
-      return false;
-    }
-    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+function isEqual(obj1, obj2) {
+  const props1 = Object.getOwnPropertyNames(obj1);
+  const props2 = Object.getOwnPropertyNames(obj2);
+
+  if (props1.length !== props2.length) {
+    return false;
+  }
+  for (let i = 0; i < props1.length; i += 1) {
+    const prop = props1[i];
+
+    if (obj1[prop] !== obj2[prop]) {
       return false;
     }
   }
   return true;
-};
+}
 
 const obj1 = {
-  brand:"Mazda",
+  brand: "Mazda",
   model: "CX-5",
   engine: "2.0 SKYACTIV-G 145",
   fuel: "бензи",
@@ -43,7 +48,7 @@ const obj1 = {
 };
 
 const obj2 = {
-  brand:"Toyota",
+  brand: "Toyota",
   model: "RAV4",
   engine: "2.0 Valvematic",
   "Engine capacity": 1987,
@@ -75,7 +80,7 @@ function calc(str) {
     if (result[letter] !== undefined) {
       const count = result[letter];
       result[letter] = count + 1;
-    } else {                         
+    } else {
       result[letter] = 1;
     }
   }
