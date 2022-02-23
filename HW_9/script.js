@@ -3,18 +3,18 @@
 //b. sum(5) -> ф-ция возвращает результат 8
 //c. sum(20) -> ф-ция возвращает результат 28
 
-(function () {
-    function sum(val) {
-        let temp = val;
-        sum = function () {
-            let arg = arguments[0] ? arguments[0] : 0;
-            return temp = temp + arg;
-        };
-        return sum();
+const createSum = function () {
+    let res = 0;
+    return function (x) {
+        res += x;
+        return res;
     }
-    console.log(sum(3)); //3
-    console.log(sum(8)); //11
-    console.log(sum(28)); //39
-})();
+};
+const sum = createSum();
+
+console.log(sum(3)); //3
+console.log(sum(8)); //11
+console.log(sum(28)); //39
+
 
 
