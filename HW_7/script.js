@@ -1,20 +1,23 @@
- // 1.Написать функцию isSymbolPresentInString(str,symbol) - возвращает true если символ найден в строке и false если нет.
+// 1.Написать функцию isSymbolPresentInString(str,symbol) - возвращает true если символ найден в строке и false если нет.
 //а. isSymbolPresentInString("abc","a") // true
 //b. isSymbolPresentInString("abc","e") // false
 
 let str1 = "abc";
 let symbol1 = "a"
 
-function isSymbolPresentInString(str1, symbol1) {
-    return !!~str1.indexOf(symbol1);
-};
+
+function isString(str1) {
+  return typeof str1 === "string";
+}
 
 function isSymbolPresentInString(str1, symbol1) {
-    for (var i = 0; i < str1.length; i++)
-        if (str1.charAt(i) == symbol1) return true;
-    return false;
-};
+  if (!isString(str1)) return false;
+  for (let i = 0; i < str1.length; i++) {
+      if (str1[i] === symbol1) return true; 
+  }
 
+  return false;
+}
 console.log(isSymbolPresentInString("abc", "a")); // true
 console.log(isSymbolPresentInString("abc", "e")); // false
 
@@ -27,13 +30,13 @@ let str2 = "hello lol";
 let symbol2 = "h";
 
 function getSymbolIndex(str2, symbol2) {
-    return str2.indexOf(symbol2);
-};
+  if (!isString(str2)) return console.error("NOT_STRING");
+  for (let i = 0; i < str2.length; i++) {
+      if (str2[i] === symbol2) return i; 
+  }
 
-function getSymbolIndex(str2, symbol2) {
-    for (var i = 0; i < str2.length; i++) if (str2.charAt(i) == symbol2) return i;
-    return -1;
-};
+  return -1;
+}
 
 console.log(getSymbolIndex("hello lol", "h")); // 0
 console.log(getSymbolIndex("hello lol", "l")); // 2
@@ -43,21 +46,13 @@ console.log(getSymbolIndex("hello lol", "v")); // -1
 //а. getNumberOfEven(223344) // 4
 //b. getNumberOfEven(111) // 0
 
-let current = "223344";
-let count = 0;
-
 function getNumberOfEven(n) {
-    return n.toString().split('').reduce(function (count, current) {
-        if (!(+current % 2)) count++;
-        return count;
-    }, 0);
-};
-
-function getNumberOfEven(n) {
-    n = n.toString();
-    let count = 0;
-    for (var i = 0; i < n.length; i++) if (!(n.charAt(i) % 2)) count++;
-    return count;
+  let num = 0;
+  while (n) {
+    num += n % 2 === 0;
+    n = Math.floor(n / 10);
+  }
+  return num;
 };
 
 console.log(getNumberOfEven(223344)); // 4
@@ -118,6 +113,3 @@ const overEighteen = students.every((student) => {
 });
 console.log(overEighteen);
 // false
-
-
-
