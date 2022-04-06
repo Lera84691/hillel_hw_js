@@ -66,58 +66,53 @@ console.log(getNumberOfEven(111)); // 0
 // 4.Написать собственную реализацию функций forEach, map, filter, some, every. Каждая функция должна принимать два аргумента - массив и callback. Все функции, кроме forEach, должны вернуть результат. 
 
 //forEach
-const fruits = [
-    'apples',
-    'bananas',
-    'oranges',
-    'oranges',
-    'apples',
-    'kiwi',
-    'kiwi',
-    'apples',
-  ];
-  const fruitsUnique = {};
-  fruits.forEach((fruit) => {
-    fruitsUnique[fruit] = true;
-  });
-  const newFruits = Object.keys(fruitsUnique);
+Array.prototype.customForEach = function(cb){
+  for(let i = 0; i < this.length; i++){
+      cb(this[i], i, arr)
+  }
+}
 
 //map
-const names = ['Вася', 'Петя', 'Маша'];
-const sayHi = names.map((name) => {
-  return `${name} привет!`;
-});
-console.log(sayHi);
-// Array(3) [ "Вася привет!", "Петя привет!", "Маша привет!" ]
+Array.prototype.customMap = function(cb){
+  let newArr = [];
+  const arr = this;
+  for(let i = 0; i < arr.length; i++){
+      newArr.push(cb(arr[i],i,arr));
+  }
+  return newArr;
+}
 
 //filter
-const age = [18, 22, 24, 30, 43];
-const ageFilter = age.filter((res) => {
-  return res > 22;
-});
-console.log(ageFilter);
-// Array(3) [ 24, 30, 43 ]
+Array.prototype.customFilter = function(cb){
+  let newArr = [];
+  const arr = this;
+  debugger;
+  for(let i = 0; i < arr.length; i++){
+      if(cb(arr[i],i,arr)){
+          newArr.push(arr[i]);
+      }
+  }
+  return newArr;
+}
 
 //some
-const numbers = [20, 16, 11, 13, 15];
-const overTwenty = numbers.some((number) => {
-  return number > 20;
-});
-console.log(overTwenty);
-// false
+Array.prototype.customSome = function(cb){
+  const arr = this;
+  for(let i = 0; i < arr.length; i++){
+      if(cb(arr[i],i,arr)){
+          return true
+      }
+  }
+  return false;
+}
 
-//every 
-const students = [
-  { name: 'Alex', age: 17 },
-  { name: 'Stas', age: 18 },
-  { name: 'Mike', age: 22 },
-  { name: 'Den', age: 20 },
-];
-const overEighteen = students.every((student) => {
-  return student.age > 18;
-});
-console.log(overEighteen);
-// false
-
-
-
+//every
+Array.prototype.customEvery = function(cb){
+  const arr = this;
+  for(let i = 0; i < arr.length; i++){
+      if(!cb(arr[i],i,arr)){
+          return false
+      }
+  }
+  return true;
+}
