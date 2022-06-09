@@ -22,3 +22,4 @@ function createTable(rowCount, colCount) {
   }
   
   document.body.append(createTable(10,10));
+  gi
