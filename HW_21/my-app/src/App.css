@@ -1,0 +1,28 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.App,
+.example {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example button  {
+  font-size: 32px;
+  font-weight: bold;
+  background-color:aquamarine;
+  color: #fff;
+  line-height: 52px;
+  border-radius: 10px;
+  border: 2px solid aqua;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
