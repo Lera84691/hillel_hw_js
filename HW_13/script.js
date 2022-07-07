@@ -5,7 +5,7 @@ function Form(insertPlace, classFormName) {
     this.regExpPassword = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]+).*$/;
 }
 
-Form.prototype.render = function() {
+Form.prototype.render = function () {
     const formContainer = document.querySelector(this.insertPlace);
     this.form = document.createElement('form');
 
@@ -32,30 +32,31 @@ Form.prototype.render = function() {
     this.submitEvent();
 }
 
-Form.prototype.validate = function() {
-    return this.regExpEmail.test(this.emailInput.value) && this.regExpPassword.test(this.passInput.value);
+Form.prototype.isEmailValid = function () {
+    return this.regExpEmail.test(this.emailInput.value);
 }
 
-Form.prototype.submitEvent = function() {
+Form.prototype.isPasswordValid = function () {
+    return this.regExpPassword.test(this.passInput.value);
+}
+
+Form.prototype.submitEvent = function () {
     this.form.addEventListener(
         'submit', (event) => {
             event.preventDefault();
 
             let userData = {};
 
-            if (this.validate()) {
+            if (!this.isEmailValid()) {
+                this.emailInput.classList.add("invalid");
+            } else if (!this.isPasswordValid()) {
+                this.passInput.classList.add("invalid");
+            } else {
                 userData.email = this.emailInput.value;
                 userData.password = this.passInput.value;
-
                 console.log(JSON.stringify(userData, null, '\t'));
-
-                this.emailInput.value = null;
-                this.passInput.value = null;
-            } else {
-                this.emailInput.classList.add("invalid");
-                this.passInput.classList.add("invalid");
             }
-        }  
+        }
     );
 }
 
