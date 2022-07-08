@@ -7,17 +7,17 @@ function Form(insertPlace, classFormName) {
 
 Form.prototype.render = function () {
     const formContainer = document.querySelector(this.insertPlace);
-    this.form = document.createElement('form');
+    this.form = document.createElement("form");
 
-    const submitButton = document.createElement('button');
+    const submitButton = document.createElement("button");
     submitButton.type = "submit";
     submitButton.innerHTML = "Log in";
 
-    this.emailInput = document.createElement('input');
+    this.emailInput = document.createElement("input");
     this.emailInput.type = "text";
     this.emailInput.placeholder = "Enter email";
 
-    this.passInput = document.createElement('input');
+    this.passInput = document.createElement("input");
     this.passInput.type = "password";
     this.passInput.placeholder = "Enter password";
 
