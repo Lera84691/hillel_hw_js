@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(13, 6, 83);
+  color: rgb(212, 209, 246);
+  display: flex;
+  flex-flow: column;
+}
+
+.wrapper {
+  font-size: 300px;
+  display: flex;
+}
+
+.am-pm-control {
+  padding: 0 20px;
+  background-color: #fff;
+  min-height: 48px;
+  cursor: pointer;
+}
